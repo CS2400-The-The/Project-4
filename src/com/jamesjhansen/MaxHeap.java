@@ -6,14 +6,15 @@ import java.util.Arrays;
  * array-based implementation of MaxHeap
  * @param <T> generically-typed
  */
-public class MaxHeap<T> implements Heap {
+public class MaxHeap<T extends Comparable<? super T>>
+        implements MaxHeapInterface<T> {
 
     /**
      * MaxHeap instance variables
      */
     private T[] heap;
-    private int count;
-    private static final int DEFAULT_INITIAL_CAPACITY = 100;
+    private int lastIndex;
+    private static final int DEFAULT_INITIAL_CAPACITY = 101;
 
     /**
      * default constructor
@@ -28,8 +29,9 @@ public class MaxHeap<T> implements Heap {
      */
     public MaxHeap(int initialCapacity) {
         @SuppressWarnings("unchecked")
-        T[] tempHeap =(T[]) new Object[initialCapacity];
-        heap = tempHeap;
+        T[] tempHeap =(T[]) new Comparable[initialCapacity+1];
+        this.heap = tempHeap;
+        this.lastIndex = 0;
     }
 
     /**
@@ -37,37 +39,20 @@ public class MaxHeap<T> implements Heap {
      */
     private void ensureCapacity()
     {
-        if ((heap.length - 1) == this.count)
+        if ((heap.length - 1) == this.lastIndex)
             heap = Arrays.copyOf(heap, 2 * heap.length);
     }
 
     /**
-     * getters and setters
-     */
-    public T[] getHeap() {
-        return heap;
-    }
-
-    public void setHeap(T[] heap) {
-        this.heap = heap;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    /**
-     * TODO
      * pretty-prints this max heap
+     * for purposes of project, only prints first 10 entries
      */
     @Override
     public String toString() {
         String o = "";
-
+        for (int i=0; i<9; i++) {
+            o += this.heap[i] + ",";
+        }
         return o;
     }
 
@@ -75,20 +60,112 @@ public class MaxHeap<T> implements Heap {
      * class methods
      */
 
+    @Override
+    public void add(T newEntry) {
+        lastIndex++;
+        ensureCapacity();
+        int newIndex = lastIndex;
+        int parentIndex = newIndex / 2;
+        while ( (parentIndex > 0) && newEntry.compareTo(heap[parentIndex]) > 0)
+        {
+            heap[newIndex] = heap[parentIndex];
+            newIndex = parentIndex;
+            parentIndex = newIndex / 2;
+        }
+        heap[newIndex] = newEntry;
+    }
+
+    /**
+     * sorts entries to ensure heap structure
+     * @param rootIndex index of root entry
+     */
+    private void reheap(int rootIndex) {
+        boolean done = false;
+        T orphan = heap[rootIndex];
+        int leftChildIndex = 2 * rootIndex;
+        while (!done && (leftChildIndex <= lastIndex)) {
+            int largerChildIndex = leftChildIndex;
+            int rightChildIndex = leftChildIndex + 1;
+            if ((rightChildIndex <= lastIndex) &&
+                    heap[rightChildIndex].compareTo(heap[largerChildIndex]) > 0) {
+                largerChildIndex = rightChildIndex;
+            } // end if
+            if (orphan.compareTo(heap[largerChildIndex]) < 0) {
+                heap[rootIndex] = heap[largerChildIndex];
+                rootIndex = largerChildIndex;
+                leftChildIndex = 2 * rootIndex;
+            } else
+                done = true;
+        }
+        heap[rootIndex] = orphan;
+    }
+
+    /**
+     * removes max entry from heap
+     * @return the (max) entry removed
+     */
+    @Override
+    public T removeMax() {
+        T root = null;
+        if (!isEmpty())
+        {
+            root = heap[1];
+            heap[1] = heap[lastIndex];
+            lastIndex--;
+            reheap(1);
+        }
+        return root;
+    }
+
+    /**
+     * returns max entry in heap
+     * @return entry with max value
+     */
+    @Override
+    public T getMax() {
+        T root = null;
+        if (!isEmpty())
+            root = this.heap[1];
+        return root;
+    }
+
+    /**
+     * checks if heap is empty
+     * @return true if heap empty, false otherwise
+     */
+    @Override
+    public boolean isEmpty() { return this.lastIndex < 1; }
+
+    /**
+     * returns number of entries in heap
+     * @return integer size of heap
+     */
+    @Override
+    public int getSize() { return this.lastIndex; }
+
+    /**
+     * removes all entries from heap
+     */
+    @Override
+    public void clear() {
+        for (; lastIndex > -1; lastIndex--)
+            heap[lastIndex] = null;
+        lastIndex = 0;
+    }
+
     /**
      * TODO
-     * sets *this* to a max heap using given integers using sequential insertions
+     * given integer array, build max heap using sequential insertions
      */
-    public void sequentialHeapify(int[] elements) {
+    public void sequentialHeap(int[] elements) {
 
     }
 
     /**
      * TODO
-     * sets *this* to a max heap using given integers using the optimal method
+     * given integer array, build max heap using 'optimal' method
      */
-    public void optimalHeapify(int[] elements) {
+    public void optimalHeap(int[] elements) {
 
     }
-
 }
