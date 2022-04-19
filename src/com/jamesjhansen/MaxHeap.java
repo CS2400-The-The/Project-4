@@ -35,19 +35,24 @@ public class MaxHeap<T extends Comparable<? super T>>
         this.lastIndex = 0;
     }
 
-    /**public MaxHeap(T[] entries)
+    public MaxHeap(T[] entries)
     {
-        this(entries.length);
+        this(entries.length); // Call other constructor
+        lastIndex = entries.length;
+        // Assertion: integrityOK = true
 
-        for (int index = 0; index < entries.length; index++){
-            heap[index+1] = entries[index];
-        }
+        // Copy given array to data field
+        for (int index = 0; index < entries.length; index++)
+            {
+            heap[index + 1] = entries[index];
+            }
 
+        // Create heap
         for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
-        {
+            {
             reheap(rootIndex);
-        }
-    }*/
+            } // end constructor
+    }
 
     /**
      * doubles capacity of heap array if full
@@ -186,33 +191,30 @@ public class MaxHeap<T extends Comparable<? super T>>
         for (int i = 0; i < elements.length; i++) {
             this.add(elements[i]);
         }
-<<<<<<< HEAD
         
-=======
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
     }
 
     /**
      * TODO
      * given integer array, build max heap using 'optimal' method
      */
-<<<<<<< HEAD
     public void optimalHeap(T[] elements) {
+        
+        lastIndex = elements.length;
+        // Assertion: integrityOK = true
 
-        this.reheap(elements.length);
+        // Copy given array to data field
+        for (int index = 0; index < elements.length; index++)
+            {
+            heap[index + 1] = elements[index];
+            }
 
-        for (int index = 0; index < elements.length; index++){
-            heap[index+1] =  elements[index];
-        }
-
+        // Create heap
         for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
-        {
+            {
             reheap(rootIndex);
-        }
-=======
-    public MaxHeap<T> optimalHeap(int[] elements) {
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
+            } // end constructor
 
-        return null;
     }
+    
 }

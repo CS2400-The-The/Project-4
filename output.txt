@@ -1,6 +1,7 @@
-Heap built using sequential insertions: null,997,991,982,960,982,913,972,931,
+Heap built using sequential insertions: 997,991,982,960,982,913,972,931,874,953,
+Number of swaps in the heap creation: 114
+Heap after 10 removals: 997,991,982,960,982,913,972,931,874,953,
+
+Heap built using optimal method: 997,982,991,960,982,972,880,931,874,953,
 Number of swaps in the heap creation: 
-Heap after 10 removals: null,997,991,982,960,982,913,972,931,
-Heap built using optimal method: null,817,136,447,515,152,865,654,66,
-Number of swaps in the heap creation: 
-Heap after 10 removals: null,817,136,447,515,152,865,654,66,
+Heap after 10 removals: 997,982,991,960,982,972,880,931,874,953,

@@ -19,34 +19,21 @@ public class Main {
      */
     public static void main(String[] args) {
 
-<<<<<<< HEAD
-        MaxHeap heap1 = new MaxHeap();
-        MaxHeap heap2 = new MaxHeap();
-=======
         MaxHeap<Integer> heap1 = new MaxHeap<Integer>();
         MaxHeap<Integer> heap2 = new MaxHeap<Integer>();
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
         Integer[] data = readData();
         heap1.sequentialHeap(data);
-        //heap2.optimalHeap(data);
+        heap2.optimalHeap(data);
 
         try {
             FileWriter myWriter = new FileWriter("output.txt");
 
             myWriter.write("Heap built using sequential insertions: " + heap1 + "\n");
-<<<<<<< HEAD
-            myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
-=======
-            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); // TODO
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
+            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); 
             // TODO: preform 10 removals
             myWriter.write("Heap after 10 removals: " + heap1 + "\n");
 
-<<<<<<< HEAD
             myWriter.write("\nHeap built using optimal method: " + heap2 + "\n");
-=======
-            myWriter.write("Heap built using optimal method: " + heap2 + "\n");
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
             myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
             // TODO: preform 10 removals
             myWriter.write("Heap after 10 removals: " + heap2);
