@@ -19,22 +19,22 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        MaxHeap heap1 = new MaxHeap();
-        MaxHeap heap2 = new MaxHeap();
-        int[] data = readData();
+        MaxHeap<Integer> heap1 = new MaxHeap<Integer>();
+        MaxHeap<Integer> heap2 = new MaxHeap<Integer>();
+        Integer[] data = readData();
         heap1.sequentialHeap(data);
-        heap2.optimalHeap(data);
+        //heap2.optimalHeap(data);
 
         try {
             FileWriter myWriter = new FileWriter("output.txt");
 
-            myWriter.write("Heap built using sequential insertions: " + heap1);
-            myWriter.write("Number of swaps in the heap creation: " ); // TODO
+            myWriter.write("Heap built using sequential insertions: " + heap1 + "\n");
+            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); // TODO
             // TODO: preform 10 removals
-            myWriter.write("Heap after 10 removals: " + heap1);
+            myWriter.write("Heap after 10 removals: " + heap1 + "\n");
 
-            myWriter.write("Heap built using optimal method: " + heap2);
-            myWriter.write("Number of swaps in the heap creation: " ); // TODO
+            myWriter.write("Heap built using optimal method: " + heap2 + "\n");
+            myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
             // TODO: preform 10 removals
             myWriter.write("Heap after 10 removals: " + heap2);
 
@@ -44,8 +44,8 @@ public class Main {
         }
     }
 
-    public static int[] readData() {
-        int[] data = new int[100];
+    public static Integer[] readData() {
+        Integer[] data = new Integer[100];
         int count = 0;
         try {
             File f = new File("data_random.txt");

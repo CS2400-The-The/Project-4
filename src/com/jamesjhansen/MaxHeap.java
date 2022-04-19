@@ -15,6 +15,7 @@ public class MaxHeap<T extends Comparable<? super T>>
     private T[] heap;
     private int lastIndex;
     private static final int DEFAULT_INITIAL_CAPACITY = 101;
+    private int swaps;
 
     /**
      * default constructor
@@ -50,7 +51,7 @@ public class MaxHeap<T extends Comparable<? super T>>
     @Override
     public String toString() {
         String o = "";
-        for (int i=0; i<9; i++) {
+        for (int i=1; i<=10; i++) {
             o += this.heap[i] + ",";
         }
         return o;
@@ -71,6 +72,7 @@ public class MaxHeap<T extends Comparable<? super T>>
             heap[newIndex] = heap[parentIndex];
             newIndex = parentIndex;
             parentIndex = newIndex / 2;
+            swaps++;
         }
         heap[newIndex] = newEntry;
     }
@@ -154,18 +156,30 @@ public class MaxHeap<T extends Comparable<? super T>>
     }
 
     /**
+     * returns number of swaps a method did
+     * @return private integer of swaps
+     */
+    public int getSwaps() {
+        return swaps;
+    }
+
+    /**
      * TODO
      * given integer array, build max heap using sequential insertions
      */
-    public void sequentialHeap(int[] elements) {
+    public void sequentialHeap(T[] elements) {
 
+        for (int i = 0; i < elements.length; i++) {
+            this.add(elements[i]);
+        }
     }
 
     /**
      * TODO
      * given integer array, build max heap using 'optimal' method
      */
-    public void optimalHeap(int[] elements) {
+    public MaxHeap<T> optimalHeap(int[] elements) {
 
+        return null;
     }
 }
