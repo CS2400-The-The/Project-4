@@ -35,7 +35,25 @@ public class MaxHeap<T extends Comparable<? super T>>
         this.lastIndex = 0;
     }
 
+<<<<<<< HEAD
     public MaxHeap(T[] entries)
+=======
+<<<<<<< HEAD
+    public MaxHeap(T[] entries) {
+
+        this(entries.length);
+
+        for (int index = 0; index < entries.length; index++) {
+            heap[index + 1] = entries[index];
+        }
+
+        for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--) {
+            reheap(rootIndex);
+        }
+    }
+=======
+    /**public MaxHeap(T[] entries)
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
     {
         this(entries.length); // Call other constructor
         lastIndex = entries.length;
@@ -51,8 +69,14 @@ public class MaxHeap<T extends Comparable<? super T>>
         for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
             {
             reheap(rootIndex);
+<<<<<<< HEAD
             } // end constructor
     }
+=======
+        }
+    }*/
+>>>>>>> 7076ab6a9eecdcbaa172c0d3602af5f7e6675a35
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
 
     /**
      * doubles capacity of heap array if full
@@ -191,17 +215,31 @@ public class MaxHeap<T extends Comparable<? super T>>
         for (int i = 0; i < elements.length; i++) {
             this.add(elements[i]);
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    } //end sequentialHeap
+=======
+<<<<<<< HEAD
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
         
     }
+>>>>>>> 7076ab6a9eecdcbaa172c0d3602af5f7e6675a35
 
     /**
      * TODO
      * given integer array, build max heap using 'optimal' method
      */
     public void optimalHeap(T[] elements) {
+<<<<<<< HEAD
         
         lastIndex = elements.length;
         // Assertion: integrityOK = true
+=======
+=======
+<<<<<<< HEAD
+    public void optimalHeap(T[] elements) {
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
 
         // Copy given array to data field
         for (int index = 0; index < elements.length; index++)
@@ -213,8 +251,19 @@ public class MaxHeap<T extends Comparable<? super T>>
         for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
             {
             reheap(rootIndex);
+<<<<<<< HEAD
             } // end constructor
 
+=======
+        }
+=======
+    public MaxHeap<T> optimalHeap(int[] elements) {
+>>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
+>>>>>>> 7076ab6a9eecdcbaa172c0d3602af5f7e6675a35
+
+        MaxHeap<Integer> yuh = new MaxHeap(elements);
+        
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
     }
     
 }

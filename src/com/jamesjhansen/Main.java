@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class Main {
 
+
     /**
      * TODO: setup file I/O (read from data_random.txt into int[], write to output.txt)
      *       instantiate a couple heaps, calling heap methods on them with data
@@ -24,18 +25,36 @@ public class Main {
         Integer[] data = readData();
         heap1.sequentialHeap(data);
         heap2.optimalHeap(data);
+<<<<<<< HEAD
+=======
+        String data_random = "data_random.txt";
+        String data_sorted = "data_sorted.txt";
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
 
         try {
             FileWriter myWriter = new FileWriter("output.txt");
 
             myWriter.write("Heap built using sequential insertions: " + heap1 + "\n");
+<<<<<<< HEAD
             myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); 
+=======
+<<<<<<< HEAD
+            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n");
+            remove10(heap1);
+=======
+<<<<<<< HEAD
+            myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
+=======
+            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); // TODO
+>>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
+>>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
             // TODO: preform 10 removals
+>>>>>>> 7076ab6a9eecdcbaa172c0d3602af5f7e6675a35
             myWriter.write("Heap after 10 removals: " + heap1 + "\n");
 
             myWriter.write("\nHeap built using optimal method: " + heap2 + "\n");
             myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
-            // TODO: preform 10 removals
+            remove10(heap2);
             myWriter.write("Heap after 10 removals: " + heap2);
 
             myWriter.close();
@@ -60,5 +79,15 @@ public class Main {
             e.printStackTrace();
         }
         return data;
+    }
+
+     /**
+     * performs 10 removals on the heap
+     */
+    public static void remove10(MaxHeap<Integer> heap) {
+        
+        for (int i = 0; i < 10; i++) {
+            heap.removeMax();
+        }
     }
 }
