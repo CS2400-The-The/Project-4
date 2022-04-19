@@ -34,6 +34,20 @@ public class MaxHeap<T extends Comparable<? super T>>
         this.lastIndex = 0;
     }
 
+    /**public MaxHeap(T[] entries)
+    {
+        this(entries.length);
+
+        for (int index = 0; index < entries.length; index++){
+            heap[index+1] = entries[index];
+        }
+
+        for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
+        {
+            reheap(rootIndex);
+        }
+    }*/
+
     /**
      * doubles capacity of heap array if full
      */
@@ -157,15 +171,30 @@ public class MaxHeap<T extends Comparable<? super T>>
      * TODO
      * given integer array, build max heap using sequential insertions
      */
-    public void sequentialHeap(int[] elements) {
+    public void sequentialHeap(T[] elements) {
 
+        for (int i = 0; i < elements.length; i++) {
+            this.add(elements[i]);
+        }
+        
     }
 
     /**
      * TODO
      * given integer array, build max heap using 'optimal' method
      */
-    public void optimalHeap(int[] elements) {
+    public void optimalHeap(T[] elements) {
+
+        this.reheap(elements.length);
+
+        for (int index = 0; index < elements.length; index++){
+            heap[index+1] =  elements[index];
+        }
+
+        for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
+        {
+            reheap(rootIndex);
+        }
 
     }
 }
