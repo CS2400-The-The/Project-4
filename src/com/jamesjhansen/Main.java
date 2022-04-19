@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class Main {
 
+
     /**
      * TODO: setup file I/O (read from data_random.txt into int[], write to output.txt)
      *       instantiate a couple heaps, calling heap methods on them with data
@@ -23,19 +24,21 @@ public class Main {
         MaxHeap<Integer> heap2 = new MaxHeap<Integer>();
         Integer[] data = readData();
         heap1.sequentialHeap(data);
-        //heap2.optimalHeap(data);
+        heap2.optimalHeap(data);
+        String data_random = "data_random.txt";
+        String data_sorted = "data_sorted.txt";
 
         try {
             FileWriter myWriter = new FileWriter("output.txt");
 
             myWriter.write("Heap built using sequential insertions: " + heap1 + "\n");
-            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); // TODO
-            // TODO: preform 10 removals
+            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n");
+            remove10(heap1);
             myWriter.write("Heap after 10 removals: " + heap1 + "\n");
 
             myWriter.write("Heap built using optimal method: " + heap2 + "\n");
             myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
-            // TODO: preform 10 removals
+            remove10(heap2);
             myWriter.write("Heap after 10 removals: " + heap2);
 
             myWriter.close();
@@ -60,5 +63,15 @@ public class Main {
             e.printStackTrace();
         }
         return data;
+    }
+
+     /**
+     * performs 10 removals on the heap
+     */
+    public static void remove10(MaxHeap<Integer> heap) {
+        
+        for (int i = 0; i < 10; i++) {
+            heap.removeMax();
+        }
     }
 }
