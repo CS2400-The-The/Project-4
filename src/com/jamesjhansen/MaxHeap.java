@@ -109,6 +109,7 @@ public class MaxHeap<T extends Comparable<? super T>>
                 heap[rootIndex] = heap[largerChildIndex];
                 rootIndex = largerChildIndex;
                 leftChildIndex = 2 * rootIndex;
+                swaps++;
             } else
                 done = true;
         }
@@ -193,6 +194,14 @@ public class MaxHeap<T extends Comparable<? super T>>
      */
     public void optimalHeap(T[] elements) {
 
-        
+        lastIndex = elements.length;
+
+        for (int index = 0; index < elements.length; index++) {
+            heap[index + 1] = elements[index];
+        }
+
+        for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--) {
+            reheap(rootIndex);
+        }
     }
 }
