@@ -22,40 +22,44 @@ public class Main {
 
         MaxHeap<Integer> heap1 = new MaxHeap<Integer>();
         MaxHeap<Integer> heap2 = new MaxHeap<Integer>();
-        Integer[] data = readData();
-        heap1.sequentialHeap(data);
-        heap2.optimalHeap(data);
-<<<<<<< HEAD
-=======
+        MaxHeap<Integer> heap3 = new MaxHeap<Integer>();
+        MaxHeap<Integer> heap4 = new MaxHeap<Integer>();
         String data_random = "data_random.txt";
         String data_sorted = "data_sorted.txt";
->>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
+        Integer[] dataRandom = readData(data_random);
+        Integer[] dataSorted = readData(data_sorted);
+        heap1.sequentialHeap(dataRandom);
+        heap2.optimalHeap(dataRandom);
+        heap3.sequentialHeap(dataSorted);
+        heap4.optimalHeap(dataSorted);
+
 
         try {
             FileWriter myWriter = new FileWriter("output.txt");
 
-            myWriter.write("Heap built using sequential insertions: " + heap1 + "\n");
-<<<<<<< HEAD
+            myWriter.write("Testing 'data_random.txt'");
+            myWriter.write("\nHeap built using sequential insertions: " + heap1 + "\n");
             myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); 
-=======
-<<<<<<< HEAD
-            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n");
             remove10(heap1);
-=======
-<<<<<<< HEAD
-            myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
-=======
-            myWriter.write("Number of swaps in the heap creation: " + heap1.getSwaps() + "\n"); // TODO
->>>>>>> 08b38e709d63df913789db002f775a12dd7b641a
->>>>>>> 88200d5d3aee3cfd9e07c0472325b8172f61546a
-            // TODO: preform 10 removals
->>>>>>> 7076ab6a9eecdcbaa172c0d3602af5f7e6675a35
             myWriter.write("Heap after 10 removals: " + heap1 + "\n");
 
             myWriter.write("\nHeap built using optimal method: " + heap2 + "\n");
-            myWriter.write("Number of swaps in the heap creation: " + "\n"); // TODO
+            myWriter.write("Number of swaps in the heap creation: " + heap2.getSwaps() + "\n");
             remove10(heap2);
             myWriter.write("Heap after 10 removals: " + heap2);
+
+
+
+            myWriter.write("\n\n\n\n\nTesting 'data_sorted.txt'");
+            myWriter.write("\nHeap built using sequential insertions: " + heap3 + "\n");
+            myWriter.write("Number of swaps in the heap creation: " + heap3.getSwaps() + "\n"); 
+            remove10(heap3);
+            myWriter.write("Heap after 10 removals: " + heap3 + "\n");
+
+            myWriter.write("\nHeap built using optimal method: " + heap4 + "\n");
+            myWriter.write("Number of swaps in the heap creation: " + heap4.getSwaps() + "\n");
+            remove10(heap4);
+            myWriter.write("Heap after 10 removals: " + heap4);
 
             myWriter.close();
         } catch (IOException e) {
@@ -63,11 +67,11 @@ public class Main {
         }
     }
 
-    public static Integer[] readData() {
+    public static Integer[] readData(String fileName) {
         Integer[] data = new Integer[100];
         int count = 0;
         try {
-            File f = new File("data_random.txt");
+            File f = new File(fileName);
             Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 int d = Integer.parseInt(myReader.nextLine());
