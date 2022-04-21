@@ -13,9 +13,7 @@ public class Main {
 
 
     /**
-     * TODO: setup file I/O (read from data_random.txt into int[], write to output.txt)
-     *       instantiate a couple heaps, calling heap methods on them with data
-     *       implement heap add and remove
+     * demonstrates use of heap methods
      * @param args command line arguments (none expected for this program)
      */
     public static void main(String[] args) {
@@ -26,8 +24,8 @@ public class Main {
         MaxHeap<Integer> heap4 = new MaxHeap<Integer>();
         String data_random = "data_random.txt";
         String data_sorted = "data_sorted.txt";
-        Integer[] dataRandom = readData(data_random);
-        Integer[] dataSorted = readData(data_sorted);
+        Integer[] dataRandom = readData("data_random.txt");
+        Integer[] dataSorted = readData("data_sorted.txt");
         heap1.sequentialHeap(dataRandom);
         heap2.optimalHeap(dataRandom);
         heap3.sequentialHeap(dataSorted);
@@ -48,8 +46,6 @@ public class Main {
             remove10(heap2);
             myWriter.write("Heap after 10 removals: " + heap2);
 
-
-
             myWriter.write("\n\n\n\n\nTesting 'data_sorted.txt'");
             myWriter.write("\nHeap built using sequential insertions: " + heap3 + "\n");
             myWriter.write("Number of swaps in the heap creation: " + heap3.getSwaps() + "\n"); 
@@ -67,6 +63,11 @@ public class Main {
         }
     }
 
+    /**
+     * returns integer array from data in imported files
+     * @param fileName name of file to read data from
+     * @return integer array of data from files
+     */
     public static Integer[] readData(String fileName) {
         Integer[] data = new Integer[100];
         int count = 0;

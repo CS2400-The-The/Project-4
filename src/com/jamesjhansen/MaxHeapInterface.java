@@ -1,8 +1,7 @@
 package com.jamesjhansen;
 
 /**
- * TODO
- * basic Heap interface
+ * basic max heap interface
  */
 public interface MaxHeapInterface<T extends Comparable<? super T>> {
     public void add(T newEntry);
